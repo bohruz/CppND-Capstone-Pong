@@ -10,14 +10,10 @@ class Ball {
   Ball(int x, int y, int w, int h, int left, int right, int bottom, int top);
   void move(Paddle& leftPaddle, Paddle& rightPaddle);
   bool checkCollision(Paddle& paddle) const;
-  int x() const;
-  int y() const;
-  int h() const;
-  int w() const;
+  int x_, y_, h_, w_;
 
  private:
   int xStart_, yStart_;
-  int x_, y_, h_, w_;
   int left_, right_, bottom_, top_;
   int xVel_, yVel_;
 
