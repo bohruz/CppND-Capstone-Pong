@@ -4,12 +4,8 @@
 #include <string>
 
 Renderer::Renderer(const std::size_t screen_width,
-                   const std::size_t screen_height,
-                   const std::size_t grid_width, const std::size_t grid_height)
-    : screen_width(screen_width),
-      screen_height(screen_height),
-      grid_width(grid_width),
-      grid_height(grid_height) {
+                   const std::size_t screen_height)
+    : screen_width_(screen_width), screen_height_(screen_height) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -39,45 +35,38 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Pong const pong, SDL_Point const &food) {
-  SDL_Rect block;
-  block.w = screen_width / grid_width;
-  block.h = screen_height / grid_height;
-
+void Renderer::Render(const Paddle& paddleUser, const Paddle& paddleMachine,
+                      const Ball& ball) {
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-  // Render food
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
-  block.x = food.x * block.w;
-  block.y = food.y * block.h;
-  SDL_RenderFillRect(sdl_renderer, &block);
-
-  // Render snake's body
+  // Set render draw color
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-  for (SDL_Point const &point : snake.body) {
-    block.x = point.x * block.w;
-    block.y = point.y * block.h;
-    SDL_RenderFillRect(sdl_renderer, &block);
-  }
+  // Draw the field
+  SDL_Rect field = {25, 25, static_cast<int>(screen_width_) - 50,
+                    static_cast<int>(screen_height_) - 50};
+  SDL_RenderDrawRect(sdl_renderer, &field);
 
-  // Render snake's head
-  block.x = static_cast<int>(snake.head_x) * block.w;
-  block.y = static_cast<int>(snake.head_y) * block.h;
-  if (snake.alive) {
-    SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
-  } else {
-    SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
-  }
-  SDL_RenderFillRect(sdl_renderer, &block);
+  // Render paddles and ball
+  SDL_Rect paddleUserQuad = {paddleUser.x_, paddleUser.y_, paddleUser.w_,
+                             paddleUser.h_};
+  SDL_Rect paddleMachineQuad = {paddleMachine.x_, ppaddleMachine2.y_,
+                                ppaddleMachine2.w_, paddleMachine.h_};
+  SDL_Rect ballQuad = {ball.x_, ball.y_, ball.w_, ball.h_};
+
+  SDL_RenderFillRect(sdl_renderer, &paddleUserQuad);
+  SDL_RenderFillRect(sdl_renderer, &paddleMachineQuad);
+  SDL_RenderFillRect(sdl_renderer, &ballQuad);
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }
 
-void Renderer::UpdateWindowTitle(int score, int fps) {
-  std::string title{"Snake Score: " + std::to_string(score) +
-                    " FPS: " + std::to_string(fps)};
+void Renderer::updateWindowTitle(const int fps, const Paddle paddleUser,
+                                 const Paddle paddleMachine) {
+  std::string title{" FPS: " + std::to_string(fps) +
+                    "  Left Score: " + std::to_string(paddleUser.score_) +
+                    "  Right Score: " + std::to_string(paddleMachine.score_)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

@@ -19,8 +19,8 @@ class Renderer {
                          const Paddle paddleMachine);
 
  private:
-  SDL_Window* sdl_window_;
-  SDL_Renderer* sdl_renderer_;
+  SDL_Window* sdl_window;
+  SDL_Renderer* sdl_renderer;
 
   const std::size_t screen_width_;
   const std::size_t screen_height_;
