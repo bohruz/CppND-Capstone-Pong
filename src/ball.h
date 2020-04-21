@@ -16,8 +16,8 @@ class Ball {
   int w() const;
 
  private:
-  int x_, y_, h_, w_;
   int xStart_, yStart_;
+  int x_, y_, h_, w_;
   int left_, right_, bottom_, top_;
   int xVel_, yVel_;
 
