@@ -1,27 +1,24 @@
 #ifndef BALL_H
 #define BALL_H
-
 #include <random>
 
 #include "paddle.h"
 
 class Ball {
  public:
-  Ball(int x, int y, int w, int h, int left, int right, int bottom, int top);
-  void move(Paddle& leftPaddle, Paddle& rightPaddle);
-  bool checkCollision(Paddle& paddle) const;
-  int x_, y_, h_, w_;
+  Ball(int x, int y, int w, int h, int left, int right, int top, int bottom);
+  void move(Paddle &leftPaddle, Paddle &rightPaddle);
+  bool checkCollision(Paddle &paddle) const;
+  int x, y, h, w;
 
  private:
-  int xStart_, yStart_;
-  int left_, right_, bottom_, top_;
-  int xVel_, yVel_;
-
-  std::random_device device_;
-  std::mt19937 engine_;
-  std::uniform_int_distribution<int> ramdomXVel_;
-  std::uniform_int_distribution<int> ramdomYVel_;
+  int xstart, ystart;
+  int left, right, top, bottom;
+  int xvel, yvel;
+  std::random_device dev;
+  std::mt19937 engine;
+  std::uniform_int_distribution<int> random_xvel;
+  std::uniform_int_distribution<int> random_yvel;
   void reset();
 };
-
 #endif

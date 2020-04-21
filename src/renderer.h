@@ -1,6 +1,5 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-
 #include <cstdio>
 
 #include "SDL.h"
@@ -9,21 +8,18 @@
 
 class Renderer {
  public:
-  Renderer(const std::size_t screen_width, const std::size_t screen_height);
-  ~Renderer();
+  Renderer(const std::size_t kScreenWidth, const std::size_t kScreenHeight);
 
-  void Render(const Paddle& paddleUser, const Paddle& paddleMachine,
-              const Ball& ball);
+  ~Renderer();  // destructor
 
-  void updateWindowTitle(const int fps, const Paddle paddleUser,
-                         const Paddle paddleMachine);
+  void render(const Paddle &p1, const Paddle &p2, const Ball &b);
+
+  void updateWindowTitle(const int fps, const Paddle p1, const Paddle p2);
 
  private:
-  SDL_Window* sdl_window;
-  SDL_Renderer* sdl_renderer;
-
-  const std::size_t screen_width_;
-  const std::size_t screen_height_;
+  SDL_Window *sdl_window;
+  SDL_Renderer *sdl_renderer;
+  const std::size_t kScreenWidth;
+  const std::size_t kScreenHeight;
 };
-
 #endif

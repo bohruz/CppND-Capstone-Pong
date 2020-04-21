@@ -1,6 +1,5 @@
 #ifndef GAME_H
 #define GAME_H
-
 #include <vector>
 
 #include "SDL.h"
@@ -11,14 +10,14 @@
 
 class Game {
  public:
-  Game(std::size_t grid_width, std::size_t grid_height);
+  Game(std::size_t, std::size_t);
   void run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
 
  private:
-  ManualPaddle paddleUser_;
-  AutoPaddle paddleMachine_;
-  Ball ball_;
+  ManualPaddle p1;
+  AutoPaddle p2;
+  Ball b;
 };
 
 #endif

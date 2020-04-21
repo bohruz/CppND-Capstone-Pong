@@ -1,51 +1,53 @@
 #include "ball.h"
 
-Ball::Ball(int x, int y, int w, int h, int left, int right, int bottom, int top)
-    : xStart_(x),
-      yStart_(y),
-      w_(w),
-      h_(h),
-      left_(left),
-      right_(right),
-      bottom_(bottom),
-      engine_(device_()),
-      ramdomXVel_(-6, 6),
-      ramdomYVel_(-3, -3) {
+Ball::Ball(int x, int y, int w, int h, int left, int right, int top, int bottom)
+    : xstart(x),
+      ystart(y),
+      w(w),
+      h(h),
+      left(left),
+      right(right),
+      top(top),
+      bottom(bottom),
+      engine(dev()),
+      random_xvel(-6, 6),
+      random_yvel(-3, 3) {
   reset();
 }
 
-void Ball::move(Paddle& leftPaddle, Paddle& rightPaddle) {
-  x_ += xVel_;
-  y_ += yVel_;
+void Ball::move(Paddle &leftPaddle, Paddle &rightPaddle) {
+  x += xvel;
+  y += yvel;
 
-  if (y_ < top_ + 1 || y_ > bottom_ - 1 - h_) yVel_ = -yVel_;
+  if (y < top + 1 || y > bottom - 1 - h) yvel = -yvel;
 
-  if (x_ < left_ + 1) {
-    rightPaddle.score_ += 1;
+  if (x < left + 1) {
+    rightPaddle.score += 1;
+    reset();
+  }
+  if (x > right - 1 - w) {
+    leftPaddle.score += 1;
     reset();
   }
 
-  if (x_ > right_ - 1 - w_) {
-    leftPaddle.score_ += 1;
-    reset();
-  }
-  if (checkCollision(leftPaddle) || checkCollision(rightPaddle)) xVel_ = -xVel_;
+  if (checkCollision(leftPaddle) || checkCollision(rightPaddle)) xvel = -xvel;
 }
 
 void Ball::reset() {
-  x_ = xStart_;
-  y_ = yStart_;
-  xVel_ = 0;
-  while (xVel_ == 0) xVel_ = ramdomXVel_(engine_);
-  yVel_ = 0;
-  while (yVel_ == 0) yVel_ = ramdomYVel_(engine_);
+  x = xstart;
+  y = ystart;
+  xvel = 0;
+  while (xvel == 0) xvel = random_xvel(engine);
+  yvel = 0;
+  while (yvel == 0) yvel = random_yvel(engine);
 }
 
-bool Ball::checkCollision(Paddle& paddle) const {
-  if ((y_ + h_) < paddle.y_) return false;
-  if (y_ > paddle.y_ + paddle.h_) return false;
-  if ((x_ + w_) < paddle.x_) return false;
-  if (x_ > paddle.x_ + paddle.w_) return false;
+bool Ball::checkCollision(Paddle &paddle) const {
+  // if any of the sides of paddle are outside of ball
+  if ((y + h) < paddle.y) return false;
+  if (y > paddle.y + paddle.h) return false;
+  if ((x + w) < paddle.x) return false;
+  if (x > paddle.x + paddle.w) return false;
 
   return true;
 }
