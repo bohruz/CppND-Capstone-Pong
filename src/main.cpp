@@ -10,10 +10,15 @@ int main() {
   constexpr std::size_t kScreenWidth{800};
   constexpr std::size_t kScreenHeight{600};
 
-  Renderer renderer(kScreenWidth, kScreenHeight);
+  Renderer renderer(
+      kScreenWidth,
+      kScreenHeight);  // created on the stack : destructor called automatically
   Controller controller;
-  Game game(kGridWidth, kGridHeight);
-  game.Run(controller, renderer, kMsPerFrame);
+  Game game(kScreenWidth, kScreenHeight);
+  game.run(controller, renderer, kMsPerFrame);
+  std::cout << "Game has terminated successfully!\n";
+
+  return 0;
 
   return 0;
 }
