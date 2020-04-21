@@ -27,23 +27,25 @@ void Game::run(Controller const &controller, Renderer &renderer,
   std::thread observer([&running, this]() {
     while (running) {
       std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-      std::cout << "Left Score : " << this->p1.score
-                << " - Right Score : " << this->p2.score << std::endl;
+      std::cout << "Left Score : " << this->paddleUser_.score_
+                << " - Right Score : " << this->paddleMachine_.score_
+                << std::endl;
     }
     std::cout << "Game loop has ended !" << std::endl;
-    std::cout << "Final Left Score : " << this->p1.score
-              << " - Final Right Score : " << this->p2.score << std::endl;
+    std::cout << "Final Left Score : " << this->paddleUser_.score_
+              << " - Final Right Score : " << this->paddleMachine_.score
+              << std::endl;
     std::cout << std::endl;
   });
 
   while (running) {
     frame_start = SDL_GetTicks();
 
-    p2.follow(b);
-    controller.handleInput(running, p1);
-    b.move(p1, p2);
+    paddleMachine_.follow(ball_);
+    controller.handleInput(running, paddleUser_);
+    ball_.move(paddleUser_, paddleMachine_);
 
-    renderer.render(p1, p2, b);
+    renderer.render(paddleUser_, paddleMachine_, ball_);
     frame_end = SDL_GetTicks();
 
     // keep track of how long each loop through the input/update/render cycle
@@ -53,7 +55,7 @@ void Game::run(Controller const &controller, Renderer &renderer,
 
     // Update the window title and keep scores after every second
     if (frame_end - title_timestamp >= 1000) {
-      renderer.updateWindowTitle(frame_count, p1, p2);
+      renderer.updateWindowTitle(frame_count, paddleUser_, paddleMachine_);
       frame_count = 0;
       title_timestamp = frame_end;
     }
