@@ -17,6 +17,7 @@ class Ball {
 
  private:
   int x_, y_, h_, w_;
+  int xStart_, yStart_;
   int left_, right_, bottom_, top_;
   int xVel_, yVel_;
 
