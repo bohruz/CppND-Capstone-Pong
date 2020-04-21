@@ -1,28 +1,29 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include <vector>
+#include <cstdio>
 
 #include "SDL.h"
-#include "pong.h"
+#include "ball.h"
+#include "paddle.h"
 
 class Renderer {
  public:
-  Renderer(const std::size_t screen_width, const std::size_t screen_height,
-           const std::size_t grid_width, const std::size_t grid_height);
+  Renderer(const std::size_t screen_width, const std::size_t screen_height);
   ~Renderer();
 
-  void Render(Snake const snake, SDL_Point const &food);
-  void UpdateWindowTitle(int score, int fps);
+  void Render(const Paddle& paddleUser, const Paddle& paddleMachine,
+              const Ball& ball);
+
+  void UpdateWindowTitle(const int fps, const Paddle paddleUser,
+                         const Paddle paddleMachine);
 
  private:
-  SDL_Window *sdl_window;
-  SDL_Renderer *sdl_renderer;
+  SDL_Window* sdl_window_;
+  SDL_Renderer* sdl_renderer_;
 
-  const std::size_t screen_width;
-  const std::size_t screen_height;
-  const std::size_t grid_width;
-  const std::size_t grid_height;
+  const std::size_t screen_width_;
+  const std::size_t screen_height_;
 };
 
 #endif
