@@ -52,7 +52,7 @@ void Renderer::Render(const Paddle& paddleUser, const Paddle& paddleMachine,
   SDL_Rect paddleUserQuad = {paddleUser.x_, paddleUser.y_, paddleUser.w_,
                              paddleUser.h_};
   SDL_Rect paddleMachineQuad = {paddleMachine.x_, paddleMachine.y_,
-                                ppaddleMachine2.w_, paddleMachine.h_};
+                                paddleMachine.w_, paddleMachine.h_};
   SDL_Rect ballQuad = {ball.x_, ball.y_, ball.w_, ball.h_};
 
   SDL_RenderFillRect(sdl_renderer, &paddleUserQuad);
