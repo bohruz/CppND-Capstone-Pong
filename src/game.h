@@ -1,30 +1,24 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <random>
+#include <vector>
 
 #include "SDL.h"
+#include "ball.h"
 #include "controller.h"
+#include "paddle.h"
 #include "renderer.h"
-#include "snake.h"
 
 class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height);
   void Run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
-  int GetScore() const;
-  int GetSize() const;
 
  private:
-  Pong pong;
-  SDL_Point ball;
-
-  int scorePlayer1{0};
-  int scorePlayer2{0};
-
-  void PlaceFood();
-  void Update();
+  ManualPaddle paddleUser;
+  AutoPaddle paddleMachine;
+  Ball ball;
 };
 
 #endif
