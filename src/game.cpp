@@ -41,11 +41,11 @@ void Game::run(Controller const &controller, Renderer &renderer,
   while (running) {
     frame_start = SDL_GetTicks();
 
-    paddleMachine_.follow(ball_);
+    paddleMachine_.followBall(ball_);
     controller.handleInput(running, paddleUser_);
     ball_.move(paddleUser_, paddleMachine_);
 
-    renderer.render(paddleUser_, paddleMachine_, ball_);
+    renderer.Render(paddleUser_, paddleMachine_, ball_);
     frame_end = SDL_GetTicks();
 
     // keep track of how long each loop through the input/update/render cycle
