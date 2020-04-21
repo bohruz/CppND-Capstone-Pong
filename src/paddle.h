@@ -9,6 +9,7 @@ class Paddle {
  public:
   Paddle(int x, int y, int h, int w, int bottom, int top);
   virtual void move(bool);
+  int score() const;
 
   int x_, y_, h_, w_;
   int score_;
