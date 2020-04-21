@@ -22,7 +22,7 @@ AutoPaddle::AutoPaddle(int x, int y, int w, int h, int bottom, int top)
     : Paddle(x, y, w, h, bottom, top) {}
 
 void AutoPaddle::followBall(const Ball& ball) {
-  float yTarget = ball.y() + 0.5 * ball.h();
+  float yTarget = ball.y_ + 0.5 * ball.h_;
   if (y_ + 0.5 * h_ > yTarget) move(true);
   if (y_ + 0.5 * h_ < yTarget) move(false);
 }
