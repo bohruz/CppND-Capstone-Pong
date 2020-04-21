@@ -15,7 +15,7 @@ class Renderer {
   void Render(const Paddle& paddleUser, const Paddle& paddleMachine,
               const Ball& ball);
 
-  void UpdateWindowTitle(const int fps, const Paddle paddleUser,
+  void updateWindowTitle(const int fps, const Paddle paddleUser,
                          const Paddle paddleMachine);
 
  private:
