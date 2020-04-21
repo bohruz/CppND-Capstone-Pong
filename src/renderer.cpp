@@ -51,7 +51,7 @@ void Renderer::Render(const Paddle& paddleUser, const Paddle& paddleMachine,
   // Render paddles and ball
   SDL_Rect paddleUserQuad = {paddleUser.x_, paddleUser.y_, paddleUser.w_,
                              paddleUser.h_};
-  SDL_Rect paddleMachineQuad = {paddleMachine.x_, ppaddleMachine2.y_,
+  SDL_Rect paddleMachineQuad = {paddleMachine.x_, paddleMachine2.y_,
                                 ppaddleMachine2.w_, paddleMachine.h_};
   SDL_Rect ballQuad = {ball.x_, ball.y_, ball.w_, ball.h_};
 
