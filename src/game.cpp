@@ -33,7 +33,7 @@ void Game::run(Controller const &controller, Renderer &renderer,
     }
     std::cout << "Game loop has ended !" << std::endl;
     std::cout << "Final Left Score : " << this->paddleUser_.score_
-              << " - Final Right Score : " << this->paddleMachine_.score
+              << " - Final Right Score : " << this->paddleMachine_.score_
               << std::endl;
     std::cout << std::endl;
   });
