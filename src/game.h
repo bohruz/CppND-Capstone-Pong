@@ -16,9 +16,9 @@ class Game {
            std::size_t target_frame_duration);
 
  private:
-  ManualPaddle paddleUser;
-  AutoPaddle paddleMachine;
-  Ball ball;
+  ManualPaddle paddleUser_;
+  AutoPaddle paddleMachine_;
+  Ball ball_;
 };
 
 #endif
