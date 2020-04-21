@@ -24,6 +24,7 @@ class Ball {
   std::mt19937 engine_;
   std::uniform_int_distribution<int> ramdomXVel_;
   std::uniform_int_distribution<int> ramdomYVel_;
+  void reset();
 };
 
 #endif
