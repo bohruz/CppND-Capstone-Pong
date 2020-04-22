@@ -8,7 +8,8 @@
 
 class Renderer {
  public:
-  Renderer(const std::size_t kScreenWidth, const std::size_t kScreenHeight);
+  // constructor
+  Renderer(const std::size_t screenWidth, const std::size_t screenHeight);
 
   ~Renderer();  // destructor
 
@@ -19,7 +20,9 @@ class Renderer {
  private:
   SDL_Window *sdl_window;
   SDL_Renderer *sdl_renderer;
-  const std::size_t kScreenWidth;
-  const std::size_t kScreenHeight;
+
+  // screen size
+  const std::size_t screenWidth_;
+  const std::size_t screenHeight_;
 };
 #endif
