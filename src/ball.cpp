@@ -32,10 +32,8 @@ void Ball::move(Paddle &leftPaddle, Paddle &rightPaddle) {
 }
 
 // getteres an setteres
-float Ball::x_position() const { return position_.x; }
-float Ball::y_position() const { return position_.y; }
-float Ball::x_velocity() const { return velocity_.x; }
-float Ball::y_velocity() const { return velocity_.y; }
+int Ball::x_position() const { return position_.x; }
+int Ball::y_position() const { return position_.y; }
 int Ball::width() const { return geometry_.width; }
 int Ball::left() const { return geometry_.lef; }
 int Ball::right() const { return geometry_.right; }

@@ -22,8 +22,8 @@ void Paddle::move(bool upwards) {
 }
 
 // getteres an setteres
-float Paddle::x_position() const { return position_.x; }
-float Paddle::y_position() const { return position_.y; }
+int Paddle::x_position() const { return position_.x; }
+int Paddle::y_position() const { return position_.y; }
 int Paddle::width() const { return geometry_.width; }
 int Paddle::height() const { return geometry_.height; }
 int Paddle::left() const { return geometry_.lef; }

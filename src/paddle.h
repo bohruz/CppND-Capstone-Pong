@@ -14,10 +14,8 @@ class Paddle {
   virtual void move(bool);
 
   // getteres an setteres
-  float x_position() const;
-  float y_position() const;
-  float x_velocity() const;
-  float y_velocity() const;
+  int x_position() const;
+  int y_position() const;
   int width() const;
   int height() const;
   int left() const;
