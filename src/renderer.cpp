@@ -37,7 +37,8 @@ Renderer::~Renderer() {
 
 void Renderer::render(const Paddle& p1, const Paddle& p2, const Ball& b) {
   // Clear screen
-  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  // SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0x2B, 0x58, 0x0c, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
   // Set render draw color
