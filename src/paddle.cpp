@@ -12,10 +12,10 @@ Paddle::Paddle(Vec2D position, Geometry geometry)
 // methods
 void Paddle::move(bool upwards) {
   if (upwards) {
-    position_.y -= 5;
+    position_.y -= 10;
     if (y_position() <= top() + 1) position_.y = top() + 1;
   } else {  // downwards
-    position_.y += 5;
+    position_.y += 10;
     if (y_position() >= bottom() - 1 - height())
       position_.y = bottom() - 1 - height();
   }

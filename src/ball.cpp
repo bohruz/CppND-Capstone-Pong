@@ -12,8 +12,8 @@ Ball::Ball(Vec2D position, Geometry geometry)
 
 // methods
 void Ball::move(Paddle &leftPaddle, Paddle &rightPaddle) {
-  position_.x += velocity_.x;
-  position_.y += velocity_.y;
+  position_.x += 2 * velocity_.x;
+  position_.y += 2 * velocity_.y;
 
   if (y_position() < top() + 1 || y_position() > bottom() - 1 - height())
     velocity_.y = -velocity_.y;
