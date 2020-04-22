@@ -38,7 +38,7 @@ Renderer::~Renderer() {
 void Renderer::render(const Paddle& p1, const Paddle& p2, const Ball& b) {
   // Clear screen
   // SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
-  SDL_SetRenderDrawColor(sdl_renderer, 0x74, 0xB3, 0x88, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0x24, 0xB3, 0x32, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
   // Set render draw color
@@ -49,7 +49,7 @@ void Renderer::render(const Paddle& p1, const Paddle& p2, const Ball& b) {
   SDL_RenderDrawRect(sdl_renderer, &field);
 
   // Set render draw color
-  SDL_SetRenderDrawColor(sdl_renderer, 0xB3, 0x9D, 0x7D, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0xB3, 0x8E, 0x6B, 0xFF);
   // Render paddles
   SDL_Rect p1Quad = {p1.x_position(), p1.y_position(), p1.width(), p1.height()};
   SDL_Rect p2Quad = {p2.x_position(), p2.y_position(), p2.width(), p2.height()};
