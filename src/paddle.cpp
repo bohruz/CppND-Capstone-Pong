@@ -3,29 +3,42 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "ball.h"
+// constructor
+Paddle::Paddle(Vec2D position, Geometry geometry)
+    : position_(position), geometry_(geometry){};
 
-Paddle::Paddle(int x, int y, int w, int h, int top, int bottom)
-    : x(x), y(y), w(w), h(h), top(top), bottom(bottom), score(0){};
-
+// methods
 void Paddle::move(bool upwards) {
   if (upwards) {
-    y -= 5;
-    if (y <= top + 1) y = top + 1;
+    position_.y -= 5;
+    if (y_position() <= top() + 1) position_.y = top() + 1;
   } else {  // downwards
-    y += 5;
-    if (y >= bottom - 1 - h) y = bottom - 1 - h;
+    position_.y += 5;
+    if (y_position() >= bottom() - 1 - height())
+      position_.y = bottom() - 1 - height();
   }
 }
 
-ManualPaddle::ManualPaddle(int x, int y, int w, int h, int top, int bottom)
-    : Paddle(x, y, w, h, top, bottom){};
+// getteres an setteres
+float Paddle::x_position() const { return position_.x; }
+float Paddle::y_position() const { return position_.y; }
+int Paddle::width() const { return geometry_.width; }
+int Paddle::height() const { return geometry_.height; }
+int Paddle::left() const { return geometry_.lef; }
+int Paddle::right() const { return geometry_.right; }
+int Paddle::top() const { return geometry_.top; }
+int Paddle::bottom() const { return geometry_.bottom; }
+int Paddle::score() const { return score_; }
+void Paddle::scored() { ++score_; }
 
-AutoPaddle::AutoPaddle(int x, int y, int w, int h, int top, int bottom)
-    : Paddle(x, y, w, h, top, bottom){};
+// ManualPaddle::ManualPaddle(int x, int y, int w, int h, int top, int bottom)
+//     : Paddle(x, y, w, h, top, bottom){};
+
+AutoPaddle::AutoPaddle(Vec2D position, Geometry geometry)
+    : Paddle(position, geometry){};
 
 void AutoPaddle::follow(const Ball& ball) {
-  float ytarget = ball.y + 0.5 * ball.h;
-  if (y + 0.5 * h > ytarget) move(true);
-  if (y + 0.5 * h < ytarget) move(false);
+  float ytarget = ball.y_position() + 0.5 * ball.height();
+  if (y_position() + 0.5 * height() > ytarget) move(true);
+  if (y_position() + 0.5 * height() < ytarget) move(false);
 }
