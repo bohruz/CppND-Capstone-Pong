@@ -44,9 +44,4 @@ class AutoPaddle : public Paddle {
   void follow(const Ball& b);
 };
 
-// class ManualPaddle : public Paddle {
-//  public:
-//   ManualPaddle(int, int, int, int, int, int);
-// };
-
 #endif

@@ -31,9 +31,6 @@ int Paddle::bottom() const { return geometry_.bottom; }
 int Paddle::score() const { return score_; }
 void Paddle::scored() { ++score_; }
 
-// ManualPaddle::ManualPaddle(int x, int y, int w, int h, int top, int bottom)
-//     : Paddle(x, y, w, h, top, bottom){};
-
 AutoPaddle::AutoPaddle(Vec2D position, Geometry geometry)
     : Paddle(position, geometry){};
 
