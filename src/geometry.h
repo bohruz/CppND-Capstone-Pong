@@ -16,7 +16,7 @@ class Vec2D {
   Vec2D& operator+=(Vec2D const& rhs);
   Vec2D operator*(float rhs);
 
-  float x{0}, y{0};
+  int x{0}, y{0};
 };
 
 #endif  // GEOMETRY_H

@@ -18,9 +18,6 @@ class Game {
   Paddle p1;
   AutoPaddle p2;
   Ball b;
-
-  std::size_t screenWidth_;
-  std::size_t screenHeight_;
 };
 
 #endif
