@@ -14,7 +14,7 @@ class Ball {
   void move(Paddle &leftPaddle, Paddle &rightPaddle);
   bool checkCollision(Paddle &paddle) const;
 
-  // getteres an setteres
+  // getteres
   float x_position() const;
   float y_position() const;
   float x_velocity() const;
