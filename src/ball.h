@@ -30,6 +30,7 @@ class Ball {
 
   // physics
   Vec2D position_;
+  Vec2D const startPosition_;
   Vec2D velocity_;
 
   // random engine

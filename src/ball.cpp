@@ -2,7 +2,7 @@
 
 // constructor
 Ball::Ball(Vec2D position, Geometry geometry)
-    : position_(position),
+    : startPosition_(position),
       geometry_(geometry),
       engine(device_()),
       random_xvel_(-6, 6),
@@ -42,7 +42,16 @@ int Ball::top() const { return geometry_.top; }
 int Ball::bottom() const { return geometry_.bottom; }
 
 void Ball::reset() {
+  // reset to initial position
+  position_.x = startPosition_.x;
+  position_.y = startPosition_.y;
+
+  // radom velocity to x cordinate
+  velocity_.x = 0;
   while (velocity_.x == 0) velocity_.x = random_xvel_(engine);
+
+  // radom velocity to y cordinate
+  velocity_.y = 0;
   while (velocity_.y == 0) velocity_.y = random_yvel_(engine);
 }
 
