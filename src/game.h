@@ -10,12 +10,12 @@
 
 class Game {
  public:
-  Game(std::size_t, std::size_t);
+  Game(std::size_t screenWidth, std::size_t screenHeight);
   void run(Controller const &controller, Renderer &renderer,
            std::size_t target_frame_duration);
 
  private:
-  ManualPaddle p1;
+  Paddle p1;
   AutoPaddle p2;
   Ball b;
 };

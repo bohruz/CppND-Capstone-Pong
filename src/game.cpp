@@ -5,12 +5,12 @@
 #include <map>
 #include <thread>
 
-Game::Game(std::size_t kScreenWidth, std::size_t kScreenHeight)
-    : p1(45, (kScreenHeight - 50) / 2 - 90, 20, 180, 25, kScreenHeight - 25),
-      p2(kScreenWidth - 65, (kScreenHeight - 50) / 2 - 90, 20, 180, 25,
-         kScreenHeight - 25),
-      b((kScreenWidth - 50) / 2 - 15, (kScreenHeight - 50) / 2 - 15, 30, 30, 25,
-        kScreenWidth - 25, 25, kScreenHeight - 25){
+Game::Game(std::size_t screenWidth, std::size_t screenHeight)
+    : p1({45, (screenHeight - 50) / 2 - 90}, {20, 180, screenHeight - 25, 25}),
+      p2({screenWidth - 65, (screenHeight - 50) / 2 - 90},
+         {20, 180, screenHeight - 25, 25}),
+      b({(screenWidth - 50) / 2 - 15, (screenHeight - 50) / 2 - 15},
+        {30, 30, screenHeight - 25, 25, 25, screenWidth - 25}){
 
       };
 
