@@ -38,7 +38,7 @@ Renderer::~Renderer() {
 void Renderer::render(const Paddle& p1, const Paddle& p2, const Ball& b) {
   // Clear screen
   // SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
-  SDL_SetRenderDrawColor(sdl_renderer, 0x2B, 0x58, 0x0c, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0x74, 0xB3, 0x88, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
   // Set render draw color
@@ -48,12 +48,18 @@ void Renderer::render(const Paddle& p1, const Paddle& p2, const Ball& b) {
                     static_cast<int>(screenHeight_) - 50};
   SDL_RenderDrawRect(sdl_renderer, &field);
 
-  // Render paddles and ball
+  // Set render draw color
+  SDL_SetRenderDrawColor(sdl_renderer, 0xB3, 0x9D, 0x7D, 0xFF);
+  // Render paddles
   SDL_Rect p1Quad = {p1.x_position(), p1.y_position(), p1.width(), p1.height()};
   SDL_Rect p2Quad = {p2.x_position(), p2.y_position(), p2.width(), p2.height()};
-  SDL_Rect bQuad = {b.x_position(), b.y_position(), b.width(), b.height()};
   SDL_RenderFillRect(sdl_renderer, &p1Quad);
   SDL_RenderFillRect(sdl_renderer, &p2Quad);
+
+  // Render ball
+  // Set render draw color
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+  SDL_Rect bQuad = {b.x_position(), b.y_position(), b.width(), b.height()};
   SDL_RenderFillRect(sdl_renderer, &bQuad);
 
   // Update Screen
