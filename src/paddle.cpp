@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <ctime>
 
+#include "ball.h"
+
 // constructor
 Paddle::Paddle(Vec2D position, Geometry geometry)
     : position_(position), geometry_(geometry){};

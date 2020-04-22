@@ -1,9 +1,9 @@
 #ifndef PADDLE_H
 #define PADDLE_H
-#include <vector>
 
-#include "ball.h"
 #include "geometry.h"
+
+class Ball;
 
 class Paddle {
  public:
