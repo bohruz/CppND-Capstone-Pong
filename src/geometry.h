@@ -1,7 +1,11 @@
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
-struct Geometry {};
+struct Geometry {
+  int width{0}, height{0};
+  int bottom{0}, top{0};
+  int lef{0}, right{0};
+};
 
 class Vec2D {
  public:
@@ -12,7 +16,7 @@ class Vec2D {
   Vec2D& operator+=(Vec2D const& rhs);
   Vec2D operator*(float rhs);
 
-  float x, y;
+  float x{0}, y{0};
 };
 
 #endif  // GEOMETRY_H
