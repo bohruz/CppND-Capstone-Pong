@@ -26,12 +26,12 @@ void Game::run(Controller const &controller, Renderer &renderer,
   std::thread observer([&running, this]() {
     while (running) {
       std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-      std::cout << "Left Score : " << this->p1.score
-                << " - Right Score : " << this->p2.score << std::endl;
+      std::cout << "Left Score : " << this->p1.score()
+                << " - Right Score : " << this->p2.score() << std::endl;
     }
     std::cout << "Game loop has ended !" << std::endl;
-    std::cout << "Final Left Score : " << this->p1.score
-              << " - Final Right Score : " << this->p2.score << std::endl;
+    std::cout << "Final Left Score : " << this->p1.score()
+              << " - Final Right Score : " << this->p2.score() << std::endl;
     std::cout << std::endl;
   });
 
