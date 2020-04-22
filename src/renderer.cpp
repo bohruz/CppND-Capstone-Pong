@@ -43,8 +43,8 @@ void Renderer::render(const Paddle& p1, const Paddle& p2, const Ball& b) {
   // Set render draw color
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   // Draw the field
-  SDL_Rect field = {25, 25, static_cast<int>(screenWidth) - 50,
-                    static_cast<int>(screenHeight) - 50};
+  SDL_Rect field = {25, 25, static_cast<int>(screenWidth_) - 50,
+                    static_cast<int>(screenHeight_) - 50};
   SDL_RenderDrawRect(sdl_renderer, &field);
 
   // Render paddles and ball
