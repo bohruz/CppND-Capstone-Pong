@@ -13,7 +13,7 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS} src)
 find_package(Threads)
 
-add_executable("${PROJECT_NAME}" src/main.cpp src/game.cpp src/ball.cpp src/controller.cpp src/renderer.cpp src/paddle.cpp)
+add_executable("${PROJECT_NAME}" src/main.cpp src/geometry.cpp src/game.cpp src/ball.cpp src/controller.cpp src/renderer.cpp src/paddle.cpp)
 string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
 target_link_libraries("${PROJECT_NAME}" ${SDL2_LIBRARIES})
 target_link_libraries("${PROJECT_NAME}" ${CMAKE_THREAD_LIBS_INIT})
