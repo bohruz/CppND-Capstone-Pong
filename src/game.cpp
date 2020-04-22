@@ -26,6 +26,7 @@ void Game::run(Controller const &controller, Renderer &renderer,
   std::thread observer([&running, this]() {
     while (running) {
       std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+      system("clear");
       std::cout << "Left Score : " << this->p1.score()
                 << " - Right Score : " << this->p2.score() << std::endl;
     }
