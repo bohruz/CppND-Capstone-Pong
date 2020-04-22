@@ -2,23 +2,43 @@
 #define BALL_H
 #include <random>
 
+#include "geometry.h"
 #include "paddle.h"
 
 class Ball {
  public:
-  Ball(int x, int y, int w, int h, int left, int right, int top, int bottom);
+  // constructor
+  Ball(Vec2D position, Geometry geometry);
+
+  // methods
   void move(Paddle &leftPaddle, Paddle &rightPaddle);
   bool checkCollision(Paddle &paddle) const;
-  int x, y, h, w;
+
+  // getteres an setteres
+  float x_position() const;
+  float y_position() const;
+  float x_velocity() const;
+  float y_velocity() const;
+  int width() const;
+  int height() const;
+  int left() const;
+  int right() const;
+  int top() const;
+  int bottom() const;
 
  private:
-  int xstart, ystart;
-  int left, right, top, bottom;
-  int xvel, yvel;
-  std::random_device dev;
+  // geometry
+  Geometry const geometry_;
+
+  // physics
+  Vec2D position_;
+  Vec2D velocity_;
+
+  // random engine
+  std::random_device device_;
   std::mt19937 engine;
-  std::uniform_int_distribution<int> random_xvel;
-  std::uniform_int_distribution<int> random_yvel;
+  std::uniform_int_distribution<int> random_xvel_;
+  std::uniform_int_distribution<int> random_yvel_;
   void reset();
 };
 #endif

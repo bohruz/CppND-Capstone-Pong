@@ -1,53 +1,59 @@
 #include "ball.h"
 
-Ball::Ball(int x, int y, int w, int h, int left, int right, int top, int bottom)
-    : xstart(x),
-      ystart(y),
-      w(w),
-      h(h),
-      left(left),
-      right(right),
-      top(top),
-      bottom(bottom),
-      engine(dev()),
-      random_xvel(-6, 6),
-      random_yvel(-3, 3) {
+// constructor
+Ball::Ball(Vec2D position, Geometry geometry)
+    : position_(position),
+      geometry_(geometry),
+      engine(device_()),
+      random_xvel_(-6, 6),
+      random_yvel_(-3, 3) {
   reset();
 }
 
+// methods
 void Ball::move(Paddle &leftPaddle, Paddle &rightPaddle) {
-  x += xvel;
-  y += yvel;
+  position_.x += velocity_.x;
+  position_.y += velocity_.y;
 
-  if (y < top + 1 || y > bottom - 1 - h) yvel = -yvel;
+  if (y_position() < top() + 1 || y_position() > bottom() - 1 - height())
+    velocity_.y = -velocity_.y;
 
-  if (x < left + 1) {
-    rightPaddle.score += 1;
+  if (x_position() < left() + 1) {
+    rightPaddle.scored();
     reset();
   }
-  if (x > right - 1 - w) {
-    leftPaddle.score += 1;
+  if (x_position() > right() - 1 - width()) {
+    leftPaddle.scored();
     reset();
   }
 
-  if (checkCollision(leftPaddle) || checkCollision(rightPaddle)) xvel = -xvel;
+  if (checkCollision(leftPaddle) || checkCollision(rightPaddle))
+    velocity_.x = -velocity_.x;
 }
 
+// getteres an setteres
+float Ball::x_position() const { return position_.x; }
+float Ball::y_position() const { return position_.y; }
+float Ball::x_velocity() const { return velocity_.x; }
+float Ball::y_velocity() const { return velocity_.y; }
+int Ball::width() const { return geometry_.width; }
+int Ball::left() const { return geometry_.lef; }
+int Ball::right() const { return geometry_.right; }
+int Ball::height() const { return geometry_.height; }
+int Ball::top() const { return geometry_.top; }
+int Ball::bottom() const { return geometry_.bottom; }
+
 void Ball::reset() {
-  x = xstart;
-  y = ystart;
-  xvel = 0;
-  while (xvel == 0) xvel = random_xvel(engine);
-  yvel = 0;
-  while (yvel == 0) yvel = random_yvel(engine);
+  while (velocity_.x == 0) velocity_.x = random_xvel_(engine);
+  while (velocity_.y == 0) velocity_.y = random_yvel_(engine);
 }
 
 bool Ball::checkCollision(Paddle &paddle) const {
   // if any of the sides of paddle are outside of ball
-  if ((y + h) < paddle.y) return false;
-  if (y > paddle.y + paddle.h) return false;
-  if ((x + w) < paddle.x) return false;
-  if (x > paddle.x + paddle.w) return false;
+  if ((y_position() + height()) < paddle.y_position()) return false;
+  if (y_position() > paddle.y_position() + paddle.height()) return false;
+  if ((x_position() + width()) < paddle.x_position()) return false;
+  if (x_position() > paddle.x_position() + paddle.width()) return false;
 
   return true;
 }
